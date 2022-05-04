@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package category;
+
+option go_package="./;category";
+
+service category{
+  rpc CreateCategory(CategoryReq)returns(CreateCategoryRes){}
+  rpc UpdateCategory(CategoryReq)returns(UpdateCategoryRes){}
+  rpc DeleteCategory(DeleteCategoryReq)returns(DeleteCategoryRes){}
+  rpc FindCategoryById(FindByIdReq)returns(CategoryRes){}
+  rpc FindCategoryByName(FindByNameReq)returns(CategoryRes){}
+  rpc FindAllCategory(FindAllReq)returns(FindAllRes){}
+}
+
+//创新|更新 的请求
+message CategoryReq{
+  string name =1;
+  uint32 level=2;
+  string parent=3;
+  string image=4;
+  string description=5;
+}
+//创建的响应
+message CreateCategoryRes{
+  string message=1;
+  int64 id=2;
+}
+//更新的响应
+message UpdateCategoryRes{
+  string message=1;
+}
+//删除的请求
+message DeleteCategoryReq{
+  uint32 id=1;
+}
+//删除的响应
+message DeleteCategoryRes{
+  string message=1;
+}
+
+//查找的请求
+message FindByIdReq{
+  uint32 id =1;
+}
+
+message CategoryRes{
+ uint64 id =1;
+ string name =2;
+  uint32 level=3;
+  string parent=4;
+  string image=5;
+  string description=6;
+}
+message FindByNameReq{
+  string name=1;
+}
+message FindAllReq{
+
+}
+//repeated关键词 是返回多个同样类型的元素的意思...切片 数据之类
+message FindAllRes{
+  repeated CategoryRes category=1;
+}
