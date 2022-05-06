@@ -1,8 +1,8 @@
 package service
 
 import (
-	"cart/domian/model"
-	"cart/domian/repository"
+	"github.com/zzflygo/gostudy/cart/domian/model"
+	"github.com/zzflygo/gostudy/cart/domian/repository"
 )
 
 type ICartService interface {

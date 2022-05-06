@@ -4,10 +4,11 @@ go 1.17
 
 require (
 	github.com/asim/go-micro/plugins/registry/consul/v4 v4.0.0-20220503030613-072547201c39
+	github.com/asim/go-micro/plugins/wrapper/ratelimiter/uber/v4 v4.0.0-20220503030613-072547201c39
 	github.com/asim/go-micro/plugins/wrapper/trace/opentracing/v4 v4.0.0-20220503030613-072547201c39
 	github.com/go-micro/plugins/v4/config/source/consul v1.0.0
 	github.com/opentracing/opentracing-go v1.2.0
-	github.com/uber/jaeger-client-go v2.30.0+incompatible
+	github.com/uber/jaeger-client-go v2.29.1+incompatible
 	go-micro.dev/v4 v4.6.0
 	google.golang.org/protobuf v1.26.0
 	gorm.io/driver/mysql v1.3.3
@@ -20,7 +21,6 @@ require (
 	github.com/acomagu/bufpipe v1.0.3 // indirect
 	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
 	github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da // indirect
-	github.com/asim/go-micro/plugins/wrapper/ratelimiter/uber/v4 v4.0.0-20220503030613-072547201c39 // indirect
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/emirpasic/gods v1.12.0 // indirect
@@ -60,7 +60,6 @@ require (
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.0 // indirect
-	github.com/zzflygo/gostudy/cart/common v0.0.0-20220506091603-ffe136b926d1 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/ratelimit v0.2.0 // indirect
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a // indirect

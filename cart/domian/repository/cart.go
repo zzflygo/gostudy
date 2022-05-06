@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"cart/domian/model"
+	"github.com/zzflygo/gostudy/cart/domian/model"
 	"gorm.io/gorm"
 )
 
