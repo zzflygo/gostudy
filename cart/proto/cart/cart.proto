@@ -1,0 +1,43 @@
+syntax ="proto3";
+
+package cart;
+option go_package="./;cart";
+
+service Cart{
+  rpc AddCart(CartInfo)returns(Response){}
+  rpc ClearCart(UserRequest)returns(Response){}
+  rpc Incr(ChangeNum)returns(Response){}
+  rpc Decr(ChangeNum)returns(Response){}
+  rpc GetAll(UserRequest)returns(CartAllResponse){}
+  rpc DeleteByID(DeleteByIdRequest)returns(Response){}
+}
+
+message CartInfo{
+  int64 id=1;
+  int64 user_id=2;
+  int64 product_id=3;
+  int64 size_id=4;
+  int64 num=5;
+}
+
+message Response{
+  int64 id=1;
+  string message=2;
+}
+
+message DeleteByIdRequest{
+  int64 cart_id=1;
+}
+
+message ChangeNum{
+  int64 cart_id=1;
+  int64 num=2;
+}
+
+
+message UserRequest{
+  int64 user_id=1;
+}
+message CartAllResponse{
+  repeated CartInfo carts =1;
+}
