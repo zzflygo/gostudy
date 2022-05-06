@@ -5,16 +5,16 @@ import (
 	"github.com/asim/go-micro/plugins/registry/consul/v4"
 	opentracing2 "github.com/asim/go-micro/plugins/wrapper/trace/opentracing/v4"
 	"github.com/opentracing/opentracing-go"
+	"github.com/zzflygo/product/common"
+	"github.com/zzflygo/product/domian/repository"
+	"github.com/zzflygo/product/domian/service"
+	"github.com/zzflygo/product/handler"
+	"github.com/zzflygo/product/proto/product"
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/registry"
 	"go-micro.dev/v4/util/log"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"product/common"
-	"product/domian/repository"
-	"product/domian/service"
-	"product/handler"
-	"product/proto/product"
 )
 
 func main() {
@@ -60,6 +60,7 @@ func main() {
 		micro.WrapHandler(opentracing2.NewHandlerWrapper(opentracing.GlobalTracer())),
 		//...
 		//设置熔断
+
 		//设置负载均衡
 	)
 	// 6.init micro对象

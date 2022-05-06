@@ -1,4 +1,4 @@
-module product
+module github.com/zzflygo/product
 
 go 1.17
 

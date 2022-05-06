@@ -20,6 +20,7 @@ func TraceInit(servicename, addr string) (opentracing.Tracer, io.Closer, error) 
 			Type:  jaeger.SamplerTypeConst,
 			Param: 1,
 		},
+		//设置采集时间和agent
 		Reporter: &config.ReporterConfig{
 			BufferFlushInterval: time.Second,
 			LogSpans:            true,

@@ -1,13 +1,15 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/asim/go-micro/plugins/registry/consul/v4"
 	opentracing2 "github.com/asim/go-micro/plugins/wrapper/trace/opentracing/v4"
 	"github.com/opentracing/opentracing-go"
+	"github.com/zzflygo/product/common"
+	"github.com/zzflygo/product/proto/product"
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/registry"
-	"product/common"
 )
 
 func main() {
@@ -38,10 +40,56 @@ func main() {
 		micro.Registry(consulRegistry),
 	)
 	//访问服务端..服务
-	go_micro_server_product
+	productService := product.NewProductService("go.micro.service.product", src.Client())
+	//造数据
+	data := NewProcutInfo()
+
 	//run
+	res, err := productService.AddProduct(context.TODO(), data)
+	if err != nil {
+		fmt.Println("ADDproduct 失败了....err:", err)
+		fmt.Println(res.Message)
+		return
+	}
+	fmt.Println(res.Id, "+++++", res.Message)
 }
 
-func SendMessage() {
-
+func NewProcutInfo() *product.ProductInfo {
+	datas := &product.ProductInfo{
+		ProductName:        "imooc",
+		ProductSku:         "cap",
+		ProductPrice:       1.1,
+		ProductDescription: "test_message",
+		ProductCategoryId:  1,
+		ProductImage: []*product.ProductImage{
+			{ImageName: "image1",
+				ImageUrl:  "url_1",
+				ImageCode: "xxx",
+			},
+			{ImageName: "image2",
+				ImageUrl:  "url_2",
+				ImageCode: "yyy",
+			},
+			{ImageName: "image3",
+				ImageUrl:  "url_3",
+				ImageCode: "zzz",
+			},
+		},
+		ProductSize: []*product.ProductSize{
+			{
+				SizeName: "体积",
+				SizeCode: "平米",
+			},
+			{SizeName: "重量",
+				SizeCode: "kg",
+			},
+		},
+		ProductSeo: &product.ProductSeo{
+			SeoTitle:       "手机",
+			SeoKeywords:    `{"品牌":"小米","内存":"32g"}`,
+			SeoDescription: "一个手机",
+			SeoCode:        "小米10s",
+		},
+	}
+	return datas
 }
