@@ -1,0 +1,52 @@
+syntax="proto3";
+package order;
+option go_package="./;order";
+
+service Order{
+  rpc GetOrderByID(RequestByID)returns(OrderInfo){}
+  rpc GetAllOrder(GetAllRequest)returns(AllOrderInfo){}
+  rpc CreateOrder(OrderInfo)returns(Response){}
+  rpc DeleteOrderByID(RequestByID)returns(Response){}
+  rpc UpdateShipStatus(UpdateShipRes)returns(Response){}
+  rpc UpdatePayStatus(UpdatePayRes)returns(Response){}
+  rpc UpdateOrderStatus(OrderInfo)returns(Response){}
+}
+
+message UpdateShipRes{
+  int64 order_id=1;
+  int32 ship_status=2;
+}
+message UpdatePayRes{
+  int64 order_id=1;
+  int32 pay_status=2;
+}
+
+message GetAllRequest{
+
+}
+message RequestByID{
+  int64 order_id=1;
+}
+message Response{
+  string msg=1;
+}
+message AllOrderInfo{
+  repeated OrderInfo all_order_info=1;
+}
+
+message OrderInfo{
+  int64 id=1;
+  int32 pay_status=2;
+  int32 ship_status=3;
+  double order_price=4;
+  repeated OrderDetail order_detail=5;
+}
+
+message OrderDetail{
+  int64 id =1;
+  int64 order_id=2;
+  int64 product_id=3;
+  int64 product_size_id=4;
+  int64 product_num=5;
+  double product_price =6;
+}
